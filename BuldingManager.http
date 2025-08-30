@@ -1,0 +1,6 @@
+@BuldingManager_HostAddress = http://localhost:5106
+
+GET {{BuldingManager_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,26 @@
+// Extensions/ServiceCollectionExtensions.cs
+
+using System.Reflection;
+using AutoMapper;
+using BuldingManager.Repo.PersonRepo;
+using BuldingManager.Services.Person;
+
+namespace BuldingManager.Extentions
+{
+    public static class ServiceCollectionExtensions
+    {
+        public static IServiceCollection AddApplicationServices(this IServiceCollection services)
+        {
+           
+            services.AddScoped<IPersonService, PersonService>();
+
+            // AutoMapper
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+            // هر سرویس دیگه‌ای که خواستی...
+            // services.AddScoped<IMyService, MyService>();
+
+            return services;
+        }
+    }
+}
