@@ -1,3 +1,4 @@
+using BuldingManager.Repo.AthenticationRepo;
 using BuldingManager.Repo.PersonRepo;
 
 namespace BuldingManager.Extentions;
@@ -10,6 +11,7 @@ public static class RepositoryCollectionExtensions
         
         
         services.AddScoped<IPersonRepository, PersonRepository>();
+        services.AddScoped<IAthenticationRepository, AthenticationRepository>();
      
         return services;
     }

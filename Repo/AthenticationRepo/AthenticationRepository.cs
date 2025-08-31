@@ -5,6 +5,7 @@ using AutoMapper;
 using BuldingManager.ApplicationDbContext;
 using BuldingManager.Dto;
 using BuldingManager.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 namespace BuldingManager.Repo.AthenticationRepo;
@@ -22,7 +23,7 @@ public class AthenticationRepository:IAthenticationRepository
         _configuration = configuration;
     }
     
-    public async Task<string> RegisterAsync(UserRegisterDto user)
+    public async Task<TokenDto> RegisterAsync(UserRegisterDto user)
     {
         if (_context.Users.Any(u => u.UserName == user.UserName))
             throw new Exception("Username already exists");
@@ -41,13 +42,29 @@ public class AthenticationRepository:IAthenticationRepository
         
         _context.Users.Add(userEntity);
         _context.SaveChanges();
+
+        var tokenDto = new TokenDto
+        {
+            Token =  GenerateJwtToken(userEntity)
+        };
         
-        return GenerateJwtToken(userEntity);
+        return tokenDto;
     }
 
-    public Task<string> LoginAsync(string username, string password)
+    public async Task<TokenDto> LoginAsync(LoginDto loginDto)
     {
-        throw new NotImplementedException();
+        var user = await _context.Users.Include(u => u.Person)
+            .FirstOrDefaultAsync(u => u.UserName == loginDto.UserName);
+        
+        if (user == null || !BCrypt.Net.BCrypt.Verify(loginDto.Password, user.Password))
+            throw new Exception("Invalid credentials");
+
+        var tokenDto = new TokenDto
+        {
+            Token =GenerateJwtToken(user)
+        };
+        
+        return tokenDto;
     }
     
     

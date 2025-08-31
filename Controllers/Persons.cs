@@ -2,6 +2,7 @@ using AutoMapper;
 using BuldingManager.Dto;
 using BuldingManager.Repo.PersonRepo;
 using BuldingManager.Services.Person;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BuldingManager.Controllers;
@@ -16,19 +17,21 @@ public class Persons:ControllerBase
     {
         _service=service;
     }
-    
+    [Authorize]
     [HttpGet]
     public async Task<IEnumerable<PersonDto>>  GetPersons()
     {
         return await _service.GetPersons();
     }
 
+    [Authorize]
     [HttpGet("{id}")]
     public async Task<PersonDto> GetPerson(int id)
     {
         return await _service.GetPerson(id);
     }
 
+    [Authorize]
     [HttpPost]
     public async Task<IActionResult> PostPerson([FromBody] PersonDto person)
     {
@@ -37,6 +40,7 @@ public class Persons:ControllerBase
     }
 
 
+    [Authorize]
     [HttpPut("{id}")]
     public async Task<IActionResult> PutPerson(int id,[FromBody] PersonDto person)
     {
@@ -44,6 +48,7 @@ public class Persons:ControllerBase
         return Ok();
     }
 
+    [Authorize]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeletePerson(int id)
     {
