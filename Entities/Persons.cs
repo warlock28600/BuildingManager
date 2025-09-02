@@ -18,4 +18,7 @@ public class Persons
     public string Mobile { get; set; }
 
     public Users User { get; set; }
+    
+    // navigation property
+    public ICollection<UnitOwner> UnitOwners { get; set; }
 }

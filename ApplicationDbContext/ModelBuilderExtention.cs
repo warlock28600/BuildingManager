@@ -1,0 +1,16 @@
+using BuldingManager.Configs;
+using Microsoft.EntityFrameworkCore;
+
+namespace BuldingManager.ApplicationDbContext;
+
+public static class ModelBuilderExtention
+{
+    public static void ApplyAllEntityConfigurations(this ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfiguration(new PersonEntityConfiguration());
+        modelBuilder.ApplyConfiguration(new UserEntityConfiguration());
+        modelBuilder.ApplyConfiguration(new BuildingEntityConfiguration());
+        modelBuilder.ApplyConfiguration(new UnitEntityConfiguration());
+        modelBuilder.ApplyConfiguration(new UnitOwnerEntityConfiguration());
+    }
+}

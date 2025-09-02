@@ -1,0 +1,22 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Reflection.Metadata.Ecma335;
+using AutoMapper.Configuration.Conventions;
+
+namespace BuldingManager.Entities;
+
+public class UnitOwner
+{
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int UnitOwnerId { get; set; }
+
+    public int UnitId { get; set; }
+    public int PersonId { get; set; }
+    public double? OwnerShipPercent { get; set; }
+    public int HouseholdCount { get; set; }
+    
+    // navigation property
+    public Persons person { get; set; }
+    public UnitEntity Unit { get; set; }
+}

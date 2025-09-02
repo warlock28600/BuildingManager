@@ -5,16 +5,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BuldingManager.ApplicationDbContext;
 
-public class BuildingDbContext(DbContextOptions<BuildingDbContext> options)
+public partial class BuildingDbContext(DbContextOptions<BuildingDbContext> options)
     : Microsoft.EntityFrameworkCore.DbContext(options)
 {
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
            base.OnModelCreating(modelBuilder);
-           modelBuilder.ApplyConfiguration(new PersonEntityConfiguration());
-           modelBuilder.ApplyConfiguration(new UserEntityConfiguration());
-        
+           modelBuilder.ApplyAllEntityConfigurations();
+
     }
-    public DbSet<Persons> Persons { get; set; }
-    public DbSet<Users> Users { get; set; }
 }
