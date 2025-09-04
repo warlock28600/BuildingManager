@@ -4,6 +4,7 @@ using System.Reflection;
 using AutoMapper;
 using BuldingManager.Repo.PersonRepo;
 using BuldingManager.Services.Athentication;
+using BuldingManager.Services.Building;
 using BuldingManager.Services.Person;
 
 namespace BuldingManager.Extentions
@@ -15,6 +16,7 @@ namespace BuldingManager.Extentions
            
             services.AddScoped<IPersonService, PersonService>();
             services.AddScoped<IAthenticationService, AthenticationService>();
+            services.AddScoped<IBuildingService, BuildingService>();
 
             // AutoMapper
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
