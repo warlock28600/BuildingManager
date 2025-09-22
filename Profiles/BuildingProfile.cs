@@ -9,5 +9,6 @@ public class BuildingProfile : Profile
     public BuildingProfile()
     {
         CreateMap<BuildingEntity, BuildingCreateDto>().ReverseMap();
+        CreateMap<BuildingEntity,BuildingGetDto>().ReverseMap();
     }
 }
