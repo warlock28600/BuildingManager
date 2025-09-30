@@ -9,5 +9,6 @@ public class UnitOwnerProfile:Profile
     public UnitOwnerProfile()
     {
         CreateMap<CreateUnitOwnerDto, UnitOwner>().ReverseMap();
+        CreateMap<GetUnitOwnerDto, UnitOwner>().ReverseMap();
     }
 }
