@@ -15,6 +15,8 @@ public class UnitOwner
     public int PersonId { get; set; }
     public double? OwnerShipPercent { get; set; }
     public int HouseholdCount { get; set; }
+    public int ExtraParkingCount { get; set; }
+    public int unitArea { get; set; }
     
     // navigation property
     public Persons person { get; set; }
