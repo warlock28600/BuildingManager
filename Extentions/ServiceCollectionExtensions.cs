@@ -7,6 +7,7 @@ using BuldingManager.Services.Athentication;
 using BuldingManager.Services.Building;
 using BuldingManager.Services.Person;
 using BuldingManager.Services.Unit;
+using BuldingManager.Services.UnitOwner;
 
 namespace BuldingManager.Extentions
 {
@@ -19,6 +20,7 @@ namespace BuldingManager.Extentions
             services.AddScoped<IAthenticationService, AthenticationService>();
             services.AddScoped<IBuildingService, BuildingService>();
             services.AddScoped<IUnitService, UnitService>();
+            services.AddScoped<IUnitOwnerService, UnitOwnerService>();
 
             // AutoMapper
             services.AddAutoMapper(Assembly.GetExecutingAssembly());

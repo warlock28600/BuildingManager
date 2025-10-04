@@ -2,6 +2,7 @@ namespace BuldingManager.Dto.Unit;
 
 public class UnitCreateDto
 {
+    public int UnitId { get; set; }
     public int BuildingId { get; set; }
     public string UnitNumber { get; set; }
     public string UnitTitle { get; set; }

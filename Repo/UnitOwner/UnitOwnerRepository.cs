@@ -1,4 +1,5 @@
-﻿using BuldingManager.ApplicationDbContext;
+﻿using AutoMapper;
+using BuldingManager.ApplicationDbContext;
 using BuldingManager.Dto.UnitOwner;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,15 +8,16 @@ namespace BuldingManager.Repo.UnitOwner;
 public class UnitOwnerRepository:IUnitOwnerRepository
 {
     private readonly BuildingDbContext _context;
-    private IUnitOwnerRepository _unitOwnerRepositoryImplementation;
+    private readonly IMapper _mapper;
 
-    public UnitOwnerRepository(BuildingDbContext context)
+    public UnitOwnerRepository(BuildingDbContext context, IMapper mapper)
     {
         _context=context;
+        _mapper=mapper;
     }
     
     
-    public async Task<IEnumerable<Entities.UnitOwner>> GetUnitOwners(string extras)
+    public async Task<IEnumerable<Entities.UnitOwner>> GetUnitOwners()
     {
        var unitOwners = await _context.UnitOwners.ToListAsync();
        return unitOwners;
@@ -27,18 +29,34 @@ public class UnitOwnerRepository:IUnitOwnerRepository
         return unitOwner;
     }
 
-    public Task CreateUnitOwner(CreateUnitOwnerDto unitOwner)
+    public Task CreateUnitOwner(Entities.UnitOwner unitOwner)
     {
-        throw new NotImplementedException();
+        _context.Add(unitOwner);
+        return _context.SaveChangesAsync();
     }
 
-    public Task UpdateUnitOwner(int id, CreateUnitOwnerDto unitOwner)
+    public async Task UpdateUnitOwner(int id, Entities.UnitOwner unitOwner)
     {
-        throw new NotImplementedException();
+        var unitOwnerEntity = await GetUnitOwner(id);
+        if (unitOwnerEntity == null)
+        {
+            throw new Exception("Unit Owner not found");
+        }
+        _mapper.Map(unitOwner, unitOwnerEntity);
+        _context.Entry(unitOwnerEntity).State = EntityState.Modified;
+        await _context.SaveChangesAsync();
+        
     }
 
-    public Task DeleteUnitOwner(int id)
+    public async Task DeleteUnitOwner(int id)
     {
-        throw new NotImplementedException();
+        
+        var unitOwnerEntity = await GetUnitOwner(id);
+        if (unitOwnerEntity == null)
+        {
+            throw new Exception("Unit Owner not found");
+        }
+         _context.Remove(unitOwnerEntity);
+         _context.SaveChangesAsync();
     }
 }
