@@ -15,9 +15,9 @@ public class UnitOwnerService:IUnitOwnerService
         _mapper = mapper;
     }
 
-    public async Task<IEnumerable<GetUnitOwnerDto>> GetUnitOwners()
+    public async Task<IEnumerable<GetUnitOwnerDto>> GetUnitOwners(string extra)
     {
-        var unitOwners = await _unitOwnerRepository.GetUnitOwners();
+        var unitOwners = await _unitOwnerRepository.GetUnitOwners(extra);
         return _mapper.Map<IEnumerable<GetUnitOwnerDto>>(unitOwners);
     }
 

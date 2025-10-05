@@ -14,12 +14,13 @@ public class UnitOwnerRepository:IUnitOwnerRepository
     {
         _context=context;
         _mapper=mapper;
+        
     }
     
     
-    public async Task<IEnumerable<Entities.UnitOwner>> GetUnitOwners()
+    public async Task<IEnumerable<Entities.UnitOwner>> GetUnitOwners(string extra)
     {
-       var unitOwners = await _context.UnitOwners.ToListAsync();
+       var unitOwners = await _context.UnitOwners.Include(u=>u.Unit).Include(u=>u.Unit.Building).Include(u=>u.person).ToListAsync();
        return unitOwners;
     }
 

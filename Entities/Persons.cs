@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace BuldingManager.Entities;
 
@@ -20,5 +21,6 @@ public class Persons
     public Users User { get; set; }
     
     // navigation property
+    [JsonIgnore]
     public ICollection<UnitOwner> UnitOwners { get; set; }
 }

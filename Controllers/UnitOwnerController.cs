@@ -1,5 +1,6 @@
 ﻿using BuldingManager.Dto.UnitOwner;
 using BuldingManager.Services.UnitOwner;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BuldingManager.Controllers;
@@ -16,13 +17,15 @@ public class UnitOwnerController:ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<GetUnitOwnerDto>>> GetUnitOwners()
+    [Authorize]
+    public async Task<ActionResult<IEnumerable<GetUnitOwnerDto>>> GetUnitOwners([FromQuery] string extra)
     {
-        var unitOwners = await _unitOwnerService.GetUnitOwners();
+        var unitOwners = await _unitOwnerService.GetUnitOwners(extra);
         return Ok(unitOwners);
     }
 
     [HttpGet("{id}")]
+    [Authorize]
     public async Task<ActionResult<GetUnitOwnerDto>> GetUnitOwner(int id)
     {
         var unitOwner = await _unitOwnerService.GetUnitOwner(id);
@@ -30,18 +33,21 @@ public class UnitOwnerController:ControllerBase
     }
 
     [HttpPost]
+    [Authorize]
     public Task CreateUnitOwner(CreateUnitOwnerDto unitOwner)
     {
         return _unitOwnerService.CreateUnitOwner(unitOwner);
     }
 
     [HttpPut("{id}")]
+    [Authorize]
     public async Task UpdateUnitOwner(int id, CreateUnitOwnerDto unitOwner)
     {
         await _unitOwnerService.UpdateUnitOwner(id, unitOwner);
     }
 
     [HttpDelete("{id}")]
+    [Authorize]
     public Task DeleteUnitOwner(int id)
     {
         return _unitOwnerService.DeleteUnitOwner(id);
