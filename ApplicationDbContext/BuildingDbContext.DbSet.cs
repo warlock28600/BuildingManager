@@ -10,4 +10,6 @@ public partial class BuildingDbContext
     public DbSet<BuildingEntity> BuildingEntities { get; set; }
     public DbSet<UnitEntity> UnitEntities { get; set; }
     public DbSet<UnitOwner> UnitOwners { get; set; }
+    
+    public DbSet<AttributeType> AttributeTypes { get; set; }
 }

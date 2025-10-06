@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace BuldingManager.Entities;
 
@@ -13,7 +14,7 @@ public class BuildingEntity
 
     public string BuildingAddress { get; set; }
     public string BuildingNumber { get; set; }
-
+    [JsonIgnore]
     public ICollection<UnitEntity> Units { get; set; }
     
 }

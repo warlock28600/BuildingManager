@@ -2,6 +2,7 @@
 using BuldingManager.ApplicationDbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BuldingManager.Migrations
 {
     [DbContext(typeof(BuildingDbContext))]
-    partial class BuildingDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250925190516_intialforwindows")]
+    partial class intialforwindows
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -132,9 +135,6 @@ namespace BuldingManager.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("UnitOwnerId"));
 
-                    b.Property<int>("ExtraParkingCount")
-                        .HasColumnType("integer");
-
                     b.Property<int>("HouseholdCount")
                         .HasColumnType("integer");
 
@@ -145,9 +145,6 @@ namespace BuldingManager.Migrations
                         .HasColumnType("integer");
 
                     b.Property<int>("UnitId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("unitArea")
                         .HasColumnType("integer");
 
                     b.HasKey("UnitOwnerId");
