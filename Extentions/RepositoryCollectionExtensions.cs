@@ -1,4 +1,5 @@
 using BuldingManager.Repo.AthenticationRepo;
+using BuldingManager.Repo.AttributeType;
 using BuldingManager.Repo.BuildingRepo;
 using BuldingManager.Repo.PersonRepo;
 using BuldingManager.Repo.UnitOwner;
@@ -18,6 +19,7 @@ public static class RepositoryCollectionExtensions
         services.AddScoped<IBuildingRepository, BuildingRepository>();
         services.AddScoped<IUnitRepository, UnitRepository>();
         services.AddScoped<IUnitOwnerRepository, UnitOwnerRepository>();
+        services.AddScoped<IAttributeTypeRepository, AttributeTypeRepository>();
      
         return services;
     }
