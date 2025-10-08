@@ -4,9 +4,9 @@ namespace BuldingManager.Services.AttributeType;
 
 public interface IAttributeTypeService
 {
-    public Task<IEnumerable<AttributeTypeDto>> GetAttributeTypes();
-    public Task<AttributeTypeDto> GetAttributeType(int attributeTypeId);
-    public Task CreateAttributeType(AttributeTypeDto attributeType);
-    public Task UpdateAttributeType(int id,AttributeTypeDto attributeType);
+    public Task<IEnumerable<AttributeTypeGetDto>> GetAttributeTypes();
+    public Task<AttributeTypeGetDto> GetAttributeType(int attributeTypeId);
+    public Task CreateAttributeType(AttributeTypeCreateAndUpdateDto attributeType);
+    public Task UpdateAttributeType(int id,AttributeTypeCreateAndUpdateDto attributeType);
     public Task DeleteAttributeType(int id);
 }

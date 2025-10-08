@@ -24,10 +24,11 @@ public class AttributeTypeRepository:IAttributeTypeRepository
 
     public async Task<Entities.AttributeType> GetAttributeType(int id)
     {
-        var attributeType = await _context.AttributeTypes.FindAsync(id);
+        var attributeType = await _context.AttributeTypes.SingleOrDefaultAsync(a => a.AttributeTypeId == id);
+
         if (attributeType == null)
         {
-         throw   new Exception("Attribute type not found");
+            throw new Exception("Attribute type not found");
         }
         return attributeType;
     }
@@ -40,13 +41,13 @@ public class AttributeTypeRepository:IAttributeTypeRepository
 
     public async Task UpdateAttributeType(int id, Entities.AttributeType attributeType)
     {
-        var attributeTypeToUpdate = await GetAttributeType(id);
+        var attributeTypeToUpdate = await _context.AttributeTypes.SingleOrDefaultAsync(a => a.AttributeTypeId == id);
         if (attributeTypeToUpdate == null)
-        {
             throw new Exception("Attribute type not found");
-        }
+
+        // Use AutoMapper to update properties
         _mapper.Map(attributeType, attributeTypeToUpdate);
-        _context.Entry(attributeTypeToUpdate).State = EntityState.Modified;
+
         await _context.SaveChangesAsync();
     }
 

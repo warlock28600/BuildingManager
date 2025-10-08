@@ -15,33 +15,33 @@ public class AttributeTypeService: IAttributeTypeService {
         _repository = repository;
     }
 
-    public async Task<IEnumerable<AttributeTypeDto>> GetAttributeTypes()
+    public async Task<IEnumerable<AttributeTypeGetDto>> GetAttributeTypes()
     {
         var attributeTypes =await _repository.GetAttributeTypes();
-        return _mapper.Map<IEnumerable<AttributeTypeDto>>(attributeTypes);
+        return _mapper.Map<IEnumerable<AttributeTypeGetDto>>(attributeTypes);
     }
 
-    public async Task<AttributeTypeDto> GetAttributeType(int attributeTypeId)
+    public async Task<AttributeTypeGetDto> GetAttributeType(int attributeTypeId)
     {
         var attributeType =await _repository.GetAttributeType(attributeTypeId);
-        return _mapper.Map<AttributeTypeDto>(attributeType);
+        return _mapper.Map<AttributeTypeGetDto>(attributeType);
     }
 
-    public Task CreateAttributeType(AttributeTypeDto attributeType)
+    public Task CreateAttributeType(AttributeTypeCreateAndUpdateDto attributeType)
     {
         _repository.CreateAttributeType(_mapper.Map<Entities.AttributeType>(attributeType));
         return Task.CompletedTask;
     }
 
-    public Task UpdateAttributeType(int id, AttributeTypeDto attributeType)
+    public async Task UpdateAttributeType(int id, AttributeTypeCreateAndUpdateDto attributeType)
     {
-        _repository.UpdateAttributeType(id, _mapper.Map<Entities.AttributeType>(attributeType));
-        return Task.CompletedTask;
+       await _repository.UpdateAttributeType(id, _mapper.Map<Entities.AttributeType>(attributeType));
+       
     }
 
-    public Task DeleteAttributeType(int id)
+    public async Task DeleteAttributeType(int id)
     {
-        _repository.DeleteAttributeType(id);
-        return Task.CompletedTask;
+      await _repository.DeleteAttributeType(id);
+       
     }
 }

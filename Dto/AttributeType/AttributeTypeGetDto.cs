@@ -1,6 +1,6 @@
 ﻿namespace BuldingManager.Dto.AttributeType;
 
-public class AttributeTypeDto
+public class AttributeTypeGetDto
 {
     public int AttributeTypeId { get; set; }
     public string AttributeTypeTitle { get; set; }

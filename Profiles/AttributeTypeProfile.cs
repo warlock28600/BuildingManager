@@ -9,6 +9,9 @@ public class AttributeTypeProfile:Profile
     public AttributeTypeProfile()
     {
 
-        CreateMap<AttributeTypeDto, AttributeType>().ReverseMap();
+        CreateMap<AttributeType, AttributeTypeGetDto>().ReverseMap();
+        CreateMap<AttributeType, AttributeTypeCreateAndUpdateDto>().ReverseMap();
+        CreateMap<AttributeType, AttributeType>()
+              .ForMember(dest => dest.AttributeTypeId, opt => opt.Ignore());
     }
 }
