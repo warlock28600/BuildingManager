@@ -1,3 +1,4 @@
+
 using BuldingManager.Configs;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,5 +13,7 @@ public static class ModelBuilderExtention
         modelBuilder.ApplyConfiguration(new BuildingEntityConfiguration());
         modelBuilder.ApplyConfiguration(new UnitEntityConfiguration());
         modelBuilder.ApplyConfiguration(new UnitOwnerEntityConfiguration());
+        modelBuilder.ApplyConfiguration(new AttributeEntityConfiguration());
+        modelBuilder.ApplyConfiguration(new AttributeTypeEntitiesConfiguration());
     }
 }
