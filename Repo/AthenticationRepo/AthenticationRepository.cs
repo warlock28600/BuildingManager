@@ -59,6 +59,11 @@ public class AthenticationRepository:IAthenticationRepository
         if (user == null || !BCrypt.Net.BCrypt.Verify(loginDto.Password, user.Password))
             throw new Exception("Invalid credentials");
 
+        if (user.IsActive == false)
+        {
+            throw new Exception("User is not active");
+        }
+
         var tokenDto = new TokenDto
         {
             Token =GenerateJwtToken(user)

@@ -7,12 +7,14 @@ using MyProject.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
-builder.Services.AddControllers().AddJsonOptions(options =>
-{
-    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
-    options.JsonSerializerOptions.WriteIndented = true;
-});;
+builder.Services.AddControllers();
+//    .AddJsonOptions(options =>
+//{
+//    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+//    options.JsonSerializerOptions.WriteIndented = true;
+//});;
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddDbContext<BuildingDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddSwaggerWithJwt(builder.Configuration);

@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace BuldingManager.Entities;
 
-public class UnitEntity
+public class UnitEntity:BaseEntity
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

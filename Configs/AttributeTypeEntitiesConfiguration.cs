@@ -10,7 +10,7 @@ namespace BuldingManager.Configs
         {
             builder.Property(a=>a.AttributeTypeTitle).HasMaxLength(150).IsRequired();
             builder.Property(a=>a.Identifier).HasMaxLength(50).IsRequired();
-            throw new NotImplementedException();
+            
         }
     }
 }

@@ -5,7 +5,7 @@ using AutoMapper.Configuration.Conventions;
 
 namespace BuldingManager.Entities;
 
-public class UnitOwner
+public class UnitOwner:BaseEntity
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

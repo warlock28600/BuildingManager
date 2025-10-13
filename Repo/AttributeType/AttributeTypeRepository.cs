@@ -16,7 +16,7 @@ public class AttributeTypeRepository:IAttributeTypeRepository
         _mapper = mapper;
     }
 
-    public async Task<List<Entities.AttributeType>> GetAttributeTypes()
+    public async Task<IEnumerable<Entities.AttributeType>> GetAttributeTypes()
     {
         var attributeTypes = await _context.AttributeTypes.ToListAsync();
         return attributeTypes;

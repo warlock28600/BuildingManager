@@ -17,7 +17,7 @@ public class AttributeTypeService: IAttributeTypeService {
 
     public async Task<IEnumerable<AttributeTypeGetDto>> GetAttributeTypes()
     {
-        var attributeTypes =await _repository.GetAttributeTypes();
+        var attributeTypes = await _repository.GetAttributeTypes();
         return _mapper.Map<IEnumerable<AttributeTypeGetDto>>(attributeTypes);
     }
 

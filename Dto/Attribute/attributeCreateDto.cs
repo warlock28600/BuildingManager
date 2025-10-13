@@ -4,6 +4,7 @@
     {
         public string Name { get; set; }
         public int AttributeTypeId { get; set; }
+        public string Value { get; set; }
     }
 }
 

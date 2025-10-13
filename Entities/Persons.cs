@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace BuldingManager.Entities;
 
-public class Persons
+public class Persons:BaseEntity
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

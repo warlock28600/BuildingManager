@@ -3,6 +3,7 @@ using System;
 using BuldingManager.ApplicationDbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BuldingManager.Migrations
 {
     [DbContext(typeof(BuildingDbContext))]
-    partial class BuildingDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251013204828_userIsActiveIsAdminField")]
+    partial class userIsActiveIsAdminField
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

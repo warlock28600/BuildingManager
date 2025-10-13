@@ -1,4 +1,4 @@
-using BuldingManager.Configs;
+﻿using BuldingManager.Configs;
 using BuldingManager.Domain;
 using BuldingManager.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -7,14 +7,15 @@ using System.Data.Common;
 
 namespace BuldingManager.ApplicationDbContext;
 
-public partial class BuildingDbContext(DbContextOptions<BuildingDbContext> options)
-    : Microsoft.EntityFrameworkCore.DbContext(options)
+public partial class BuildingDbContext:DbContext
 {
+
+    public BuildingDbContext(DbContextOptions<BuildingDbContext> options) : base(options) { }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-           base.OnModelCreating(modelBuilder);
-           modelBuilder.ApplyAllEntityConfigurations();
-
+        base.OnModelCreating(modelBuilder);
+        modelBuilder.ApplyAllEntityConfigurations();
         foreach (var entityType in modelBuilder.Model.GetEntityTypes())
         {
             if (typeof(BaseEntity).IsAssignableFrom(entityType.ClrType))
@@ -26,7 +27,6 @@ public partial class BuildingDbContext(DbContextOptions<BuildingDbContext> optio
                 method?.Invoke(null, new object[] { modelBuilder });
             }
         }
-
     }
 
     public override int SaveChanges()
