@@ -12,4 +12,5 @@ public partial class BuildingDbContext
     public DbSet<UnitOwner> UnitOwners { get; set; }    
     public DbSet<AttributeType> AttributeTypes { get; set; }
     public DbSet<Entities.Attribute> Attributes { get; set; }
+    public DbSet<Entities.ResidentEntity> Residents{ get; set; }
 }

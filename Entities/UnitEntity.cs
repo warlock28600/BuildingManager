@@ -19,5 +19,7 @@ public class UnitEntity:BaseEntity
     public BuildingEntity Building { get; set; }
     [JsonIgnore]
     public ICollection<UnitOwner> UnitOwners { get; set; }
-    
+    [JsonIgnore]
+    public ICollection<ResidentEntity> Residents { get; set; }
+
 }
