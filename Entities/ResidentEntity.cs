@@ -1,7 +1,11 @@
-﻿namespace BuldingManager.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace BuldingManager.Entities
 {
-    public class ResidentEntity
+    public class ResidentEntity:BaseEntity
+
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id{ get; set; }
         public int PersonId { get; set; }
         public Persons Person { get; set; }

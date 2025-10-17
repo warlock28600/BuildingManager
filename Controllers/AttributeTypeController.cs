@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.ApplicationModels;
 namespace BuldingManager.Controllers
 {
     [Controller]
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class AttributeTypeController : ControllerBase
     {
         private readonly IAttributeTypeService _service;

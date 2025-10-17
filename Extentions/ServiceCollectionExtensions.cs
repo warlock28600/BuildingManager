@@ -3,11 +3,13 @@
 using System.Reflection;
 using AutoMapper;
 using BuldingManager.Repo.PersonRepo;
+using BuldingManager.Repo.Resident;
 using BuldingManager.Services.Athentication;
 using BuldingManager.Services.Attribute;
 using BuldingManager.Services.AttributeType;
 using BuldingManager.Services.Building;
 using BuldingManager.Services.Person;
+using BuldingManager.Services.Resident;
 using BuldingManager.Services.Unit;
 using BuldingManager.Services.UnitOwner;
 
@@ -17,7 +19,7 @@ namespace BuldingManager.Extentions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-           
+
             services.AddScoped<IPersonService, PersonService>();
             services.AddScoped<IAthenticationService, AthenticationService>();
             services.AddScoped<IBuildingService, BuildingService>();
@@ -25,6 +27,7 @@ namespace BuldingManager.Extentions
             services.AddScoped<IUnitOwnerService, UnitOwnerService>();
             services.AddScoped<IAttributeTypeService, AttributeTypeService>();
             services.AddScoped<IAttributeService, AttributeService>();
+            services.AddScoped<IResidentService, ResidentService>();
 
             // AutoMapper
             services.AddAutoMapper(Assembly.GetExecutingAssembly());

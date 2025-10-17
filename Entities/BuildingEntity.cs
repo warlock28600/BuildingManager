@@ -14,7 +14,12 @@ public class BuildingEntity:BaseEntity
 
     public string BuildingAddress { get; set; }
     public string BuildingNumber { get; set; }
+   
+    public int CompoundId { get; set; }
     [JsonIgnore]
     public ICollection<UnitEntity> Units { get; set; }
-    
+
+    public Compounds Compound { get; set; }
+   
+
 }

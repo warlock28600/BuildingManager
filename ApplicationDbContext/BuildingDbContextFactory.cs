@@ -14,7 +14,8 @@ public class BuildingDbContextFactory : IDesignTimeDbContextFactory<BuildingDbCo
         var optionsBuilder = new DbContextOptionsBuilder<BuildingDbContext>();
 
         // 👇 connection string برای PostgreSQL
-        optionsBuilder.UseNpgsql(config.GetConnectionString("DefaultConnection"));
+        //optionsBuilder.UseNpgsql(config.GetConnectionString("DefaultConnection"));
+        optionsBuilder.UseSqlServer(config.GetConnectionString("SqlServerConnection"));
 
         return new BuildingDbContext(optionsBuilder.Options);
     }
