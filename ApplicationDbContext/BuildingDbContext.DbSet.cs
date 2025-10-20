@@ -14,4 +14,5 @@ public partial class BuildingDbContext
     public DbSet<Entities.Attribute> Attributes { get; set; }
     public DbSet<Entities.ResidentEntity> Residents{ get; set; }
     public DbSet<Entities.Compounds> Compounds { get; set; }
+    public DbSet<Entities.FinancialPeriod> FinancialPeriods { get; set; }
 }
