@@ -9,6 +9,7 @@ using BuldingManager.Services.Attribute;
 using BuldingManager.Services.AttributeType;
 using BuldingManager.Services.Building;
 using BuldingManager.Services.Compound;
+using BuldingManager.Services.FinancialPeriod;
 using BuldingManager.Services.Person;
 using BuldingManager.Services.Resident;
 using BuldingManager.Services.Unit;
@@ -30,6 +31,7 @@ namespace BuldingManager.Extentions
             services.AddScoped<IAttributeService, AttributeService>();
             services.AddScoped<IResidentService, ResidentService>();
             services.AddScoped<ICompoundService, CompoundService>();
+            services.AddScoped<IFinancialPeriodService, FinancialPeriodService>();
 
             // AutoMapper
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
