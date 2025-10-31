@@ -3,6 +3,7 @@ using BuldingManager.Repo.Attribute;
 using BuldingManager.Repo.AttributeType;
 using BuldingManager.Repo.BuildingRepo;
 using BuldingManager.Repo.CompoundRepo;
+using BuldingManager.Repo.ExpenseRepo;
 using BuldingManager.Repo.FinancialPeriod;
 using BuldingManager.Repo.PersonRepo;
 using BuldingManager.Repo.Resident;
@@ -28,6 +29,7 @@ public static class RepositoryCollectionExtensions
         services.AddScoped<IResidentRepository, ResidentRepository>();
         services.AddScoped<ICompoundRepository,CompoundRepository>();
         services.AddScoped<IFinancialPeriodRepository, FinancialPeriodRepository>();
+        services.AddScoped<IExpenseRepository, ExpenseRepository>();
 
         return services;
     }

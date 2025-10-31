@@ -15,14 +15,14 @@ namespace BuldingManager.Services.Attribute
             _mapper = mapper;
         }
 
-        public async Task CreateAttribute(attributeCreateDto attribute)
+        public async Task<bool> CreateAttribute(attributeCreateDto attribute)
         {
-           await _attributeRepository.CreateAttribute(_mapper.Map<Entities.Attribute>(attribute));
+           return await _attributeRepository.CreateAttribute(_mapper.Map<Entities.Attribute>(attribute));
         }
 
-        public Task DeleteAttribute(int id)
+        public async Task<bool> DeleteAttribute(int id)
         {
-            return  _attributeRepository.DeleteAttribute(id);
+            return await _attributeRepository.DeleteAttribute(id);
         }
 
         public async Task<AttributeGetDto> GetAttribute(int attributeId)
@@ -37,9 +37,9 @@ namespace BuldingManager.Services.Attribute
             return _mapper.Map<IEnumerable<AttributeGetDto>>(attributes);
         }
 
-        public async Task UpdateAttribute(int id, attributeCreateDto attribute)
+        public async Task<bool> UpdateAttribute(int id, attributeCreateDto attribute)
         {
-            await _attributeRepository.UpdateAttribute(id, _mapper.Map<Entities.Attribute>(attribute));
+           return await _attributeRepository.UpdateAttribute(id, _mapper.Map<Entities.Attribute>(attribute));
         }
     }
 }

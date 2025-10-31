@@ -11,10 +11,12 @@ namespace BuldingManager.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IAttributeService _service;
-        public AttributeController(IMapper mapper,IAttributeService service)
+        private readonly ILogger<AttributeController> _logger;
+        public AttributeController(IMapper mapper, IAttributeService service, ILogger<AttributeController> logger)
         {
             _mapper = mapper;
-            _service= service;  
+            _service = service;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -40,23 +42,38 @@ namespace BuldingManager.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostAttribute([FromBody] attributeCreateDto attribute)
+        public async Task<ActionResult> PostAttribute([FromBody] attributeCreateDto attribute)
         {
-            await _service.CreateAttribute(attribute);
+            var created = await _service.CreateAttribute(attribute);
+            if (!created)
+            {
+                _logger.LogError("there is problem creating attribute");
+                return BadRequest("there is problem creating attribute");
+            }
             return Ok();
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAttribute(int id,[FromBody] attributeCreateDto attribute)
+        public async Task<ActionResult> PutAttribute(int id,[FromBody] attributeCreateDto attribute)
         {
-            await _service.UpdateAttribute(id, attribute);
+            var updated= await _service.UpdateAttribute(id, attribute);
+            if (!updated)
+            {
+                _logger.LogError("there is problem updating attribute");
+                return BadRequest("there is problem updating attribute");
+            }
             return Ok();
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAttribute(int id)
+        public async Task<ActionResult> DeleteAttribute(int id)
         {
-            await _service.DeleteAttribute(id);
+            var deleted= await _service.DeleteAttribute(id);
+            if (!deleted)
+            {
+                _logger.LogError("there is problem deleting attribute");
+                return BadRequest("there is problem deleting attribute");
+            }
             return Ok();
         }
 

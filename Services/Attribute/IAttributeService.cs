@@ -4,8 +4,8 @@
     {
         Task<IEnumerable<Dto.Attribute.AttributeGetDto>> GetAttributes();
         Task<Dto.Attribute.AttributeGetDto> GetAttribute(int attributeId);
-        Task CreateAttribute(Dto.Attribute.attributeCreateDto attribute);
-        Task UpdateAttribute(int id, Dto.Attribute.attributeCreateDto attribute);
-        Task DeleteAttribute(int id);
+        Task<bool> CreateAttribute(Dto.Attribute.attributeCreateDto attribute);
+        Task<bool> UpdateAttribute(int id, Dto.Attribute.attributeCreateDto attribute);
+        Task<bool> DeleteAttribute(int id);
     }
 }

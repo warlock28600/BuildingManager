@@ -4,8 +4,9 @@ using BuldingManager.Repo.AttributeType;
 
 namespace BuldingManager.Services.AttributeType;
 
-public class AttributeTypeService: IAttributeTypeService {
-    
+public class AttributeTypeService : IAttributeTypeService
+{
+
     private readonly IMapper _mapper;
     private readonly IAttributeTypeRepository _repository;
 
@@ -23,25 +24,25 @@ public class AttributeTypeService: IAttributeTypeService {
 
     public async Task<AttributeTypeGetDto> GetAttributeType(int attributeTypeId)
     {
-        var attributeType =await _repository.GetAttributeType(attributeTypeId);
+        var attributeType = await _repository.GetAttributeType(attributeTypeId);
         return _mapper.Map<AttributeTypeGetDto>(attributeType);
     }
 
-    public Task CreateAttributeType(AttributeTypeCreateAndUpdateDto attributeType)
+    public async Task<bool> CreateAttributeType(AttributeTypeCreateAndUpdateDto attributeType)
     {
-        _repository.CreateAttributeType(_mapper.Map<Entities.AttributeType>(attributeType));
-        return Task.CompletedTask;
+        return await _repository.CreateAttributeType(_mapper.Map<Entities.AttributeType>(attributeType));
+
     }
 
-    public async Task UpdateAttributeType(int id, AttributeTypeCreateAndUpdateDto attributeType)
+    public async Task<bool> UpdateAttributeType(int id, AttributeTypeCreateAndUpdateDto attributeType)
     {
-       await _repository.UpdateAttributeType(id, _mapper.Map<Entities.AttributeType>(attributeType));
-       
+        return await _repository.UpdateAttributeType(id, _mapper.Map<Entities.AttributeType>(attributeType));
+
     }
 
-    public async Task DeleteAttributeType(int id)
+    public async Task<bool> DeleteAttributeType(int id)
     {
-      await _repository.DeleteAttributeType(id);
-       
+        return await _repository.DeleteAttributeType(id);
+
     }
 }

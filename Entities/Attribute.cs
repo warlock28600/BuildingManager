@@ -11,5 +11,9 @@ namespace BuldingManager.Entities
         public string Value { get; set; }
         public int AttributeTypeId { get; set; }
         public AttributeType AttributeType{ get; set; }
+
+        #region Navigation Properties
+        public ICollection<Expense> Expenses { get; set; }
+        #endregion
     }
 }

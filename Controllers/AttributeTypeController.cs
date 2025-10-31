@@ -10,10 +10,12 @@ namespace BuldingManager.Controllers
     public class AttributeTypeController : ControllerBase
     {
         private readonly IAttributeTypeService _service;
+        private readonly ILogger<AttributeTypeController> _logger;
 
-        public AttributeTypeController(IAttributeTypeService service)
+        public AttributeTypeController(IAttributeTypeService service, ILogger<AttributeTypeController> logger)
         {
             _service = service;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -37,21 +39,36 @@ namespace BuldingManager.Controllers
         [HttpPost]
         public async Task<ActionResult> CreateAttributeType([FromBody] AttributeTypeCreateAndUpdateDto attributeType)
         {
-            await _service.CreateAttributeType(attributeType);
+            var created = await _service.CreateAttributeType(attributeType);
+            if (!created)
+            {
+                _logger.LogError("there id problem creating attribute type");
+                return BadRequest("there id problem creating attribute type");
+            }
             return Ok();
         }
 
         [HttpPut("{id}")]
         public async Task<ActionResult> UpdateAttributeType(int id, [FromBody] AttributeTypeCreateAndUpdateDto attributeType)
         {
-            await _service.UpdateAttributeType(id, attributeType);
+         var updated =  await _service.UpdateAttributeType(id, attributeType);
+            if (!updated)
+            {
+                _logger.LogError("there is problem updating AttributeType");
+                return BadRequest("there is problem updating AttributeType");
+            }
             return Ok();
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteAttributeType(int id)
         {
-            await _service.DeleteAttributeType(id);
+            var deleted = await _service.DeleteAttributeType(id);
+            if (!deleted)
+            {
+                _logger.LogError("there is problem deleting AttributeType");
+                return BadRequest("there is problem deleting AttributeType");
+            }
             return Ok();
         }
 

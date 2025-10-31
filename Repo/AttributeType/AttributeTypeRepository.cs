@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BuldingManager.Repo.AttributeType;
 
-public class AttributeTypeRepository:IAttributeTypeRepository
+public class AttributeTypeRepository : IAttributeTypeRepository
 {
     private readonly BuildingDbContext _context;
     private readonly IMapper _mapper;
@@ -33,13 +33,14 @@ public class AttributeTypeRepository:IAttributeTypeRepository
         return attributeType;
     }
 
-    public Task CreateAttributeType(Entities.AttributeType attributeType)
+    public async Task<bool> CreateAttributeType(Entities.AttributeType attributeType)
     {
         _context.AttributeTypes.Add(attributeType);
-        return _context.SaveChangesAsync();
+        var created = await _context.SaveChangesAsync();
+        return created > 0;
     }
 
-    public async Task UpdateAttributeType(int id, Entities.AttributeType attributeType)
+    public async Task<bool> UpdateAttributeType(int id, Entities.AttributeType attributeType)
     {
         var attributeTypeToUpdate = await _context.AttributeTypes.SingleOrDefaultAsync(a => a.AttributeTypeId == id);
         if (attributeTypeToUpdate == null)
@@ -48,10 +49,11 @@ public class AttributeTypeRepository:IAttributeTypeRepository
         // Use AutoMapper to update properties
         _mapper.Map(attributeType, attributeTypeToUpdate);
 
-        await _context.SaveChangesAsync();
+        var updated = await _context.SaveChangesAsync();
+        return updated > 0;
     }
 
-    public async Task DeleteAttributeType(int id)
+    public async Task<bool> DeleteAttributeType(int id)
     {
         var attributeTypeToDelete = await GetAttributeType(id);
         if (attributeTypeToDelete == null)
@@ -59,6 +61,7 @@ public class AttributeTypeRepository:IAttributeTypeRepository
             throw new Exception("Attribute type not found");
         }
         _context.AttributeTypes.Remove(attributeTypeToDelete);
-        await _context.SaveChangesAsync();
+        var deleted = await _context.SaveChangesAsync();
+        return deleted > 0;
     }
 }

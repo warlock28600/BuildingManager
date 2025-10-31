@@ -48,8 +48,8 @@ namespace BuldingManager.Controllers
             return Ok(result);
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> CloseFinancialPeriod([FromQuery] int id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> CloseFinancialPeriod( int id)
         {
             var result = await _financialPeriodService.DeleteFinancialPeriod(id);
             return Ok(result);
