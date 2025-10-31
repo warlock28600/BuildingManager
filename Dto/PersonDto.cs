@@ -1,6 +1,8 @@
+using BuldingManager.Entities;
+
 namespace BuldingManager.Dto;
 
-public class PersonDto
+public class PersonDto:BaseEntity
 {
     public int Id { get; set; }
     public string FirstName { get; set; }

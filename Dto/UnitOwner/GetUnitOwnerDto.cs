@@ -2,7 +2,7 @@
 
 namespace BuldingManager.Dto.UnitOwner;
 
-public class GetUnitOwnerDto
+public class GetUnitOwnerDto:BaseEntity
 {
     public int UnitOwnerId { get; set; }
     public int UnitId { get; set; }

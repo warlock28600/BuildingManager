@@ -2,7 +2,7 @@ using BuldingManager.Entities;
 
 namespace BuldingManager.Dto;
 
-public class BuildingGetDto
+public class BuildingGetDto:BaseEntity
 {
     public string Title { get; set; }
     public string BuildingAddress { get; set; }

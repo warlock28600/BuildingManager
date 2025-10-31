@@ -1,10 +1,11 @@
 ﻿using BuldingManager.Domain;
+using BuldingManager.Entities;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BuldingManager.Dto.Expense
 {
-    public class ExpenseGetDto
+    public class ExpenseGetDto:BaseEntity
     {
         public int Id { get; set; }
         public string Title { get; set; }

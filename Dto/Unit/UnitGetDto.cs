@@ -1,6 +1,8 @@
+using BuldingManager.Entities;
+
 namespace BuldingManager.Dto.Unit;
 
-public class UnitGetDto
+public class UnitGetDto:BaseEntity
 {
     public int UnitId { get; set; }
     public string UnitNumber { get; set; }
