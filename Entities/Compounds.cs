@@ -8,7 +8,7 @@ namespace BuldingManager.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Title { get; set; }
-        [JsonIgnore]
+        //[JsonIgnore]
         public ICollection<BuildingEntity> Buildings { get; set; }
         public int CompoundSize => Buildings?.Count ?? 0;
     }

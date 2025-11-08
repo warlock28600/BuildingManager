@@ -15,7 +15,9 @@ public class UnitEntity:BaseEntity
     public string UnitNumber { get; set; }
     public string UnitTitle { get; set; }
     public string Floor { get; set; }
-    
+    public int UnitArea { get; set; }
+    public int ExtraParkingCount { get; set; }
+
     public BuildingEntity Building { get; set; }
     [JsonIgnore]
     public ICollection<UnitOwner> UnitOwners { get; set; }

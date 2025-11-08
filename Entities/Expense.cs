@@ -15,12 +15,12 @@ namespace BuldingManager.Entities
         public decimal Amount { get; set; }
         public string Description { get; set; }
         public int FinancialPeriodId { get; set; }
-        public int AttributeId { get; set; }
-
+        public int CostTypeId { get; set; }
         public ExpanseType ExpanseType { get; set; }
-
         #region Navigation Properties
         public FinancialPeriod FinancialPeriod { get; set; }
+
+        [ForeignKey(nameof(CostTypeId))]
         public Attribute Attribute { get; set; }
         #endregion
     }

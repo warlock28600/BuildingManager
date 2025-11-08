@@ -9,5 +9,5 @@ public class UnitGetDto:BaseEntity
     public string UnitTitle { get; set; }
     public string Floor { get; set; }
     public int ExtraParkingCount { get; set; }
-    public int unitArea { get; set; }
+    public int UnitArea { get; set; }
 }

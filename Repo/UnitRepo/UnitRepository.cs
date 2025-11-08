@@ -19,13 +19,8 @@ public class UnitRepository:IUnitRepository
     
     public async Task<IEnumerable<UnitEntity>> GetAllUnits()
     {
-        var units = await _context.UnitEntities.Select(u=>new UnitEntity()
-        {
-            Floor = u.Floor,
-            UnitNumber = u.UnitNumber,
-            UnitTitle = u.UnitTitle
-            
-        }).ToArrayAsync();
+
+        var units = await _context.UnitEntities.ToArrayAsync();
         if (units.Length == 0)
         {
             throw new Exception("No units found");

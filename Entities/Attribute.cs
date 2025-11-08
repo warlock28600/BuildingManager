@@ -10,6 +10,7 @@ namespace BuldingManager.Entities
         public string Name { get; set; }
         public string Value { get; set; }
         public int AttributeTypeId { get; set; }
+        public string Description { get; set; }
         public AttributeType AttributeType{ get; set; }
 
         #region Navigation Properties
