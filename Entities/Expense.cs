@@ -22,6 +22,7 @@ namespace BuldingManager.Entities
 
         [ForeignKey(nameof(CostTypeId))]
         public Attribute Attribute { get; set; }
+        public ICollection<UnitExpense> UnitExpense { get; set; }
         #endregion
     }
 }

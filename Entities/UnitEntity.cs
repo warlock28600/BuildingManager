@@ -18,10 +18,18 @@ public class UnitEntity:BaseEntity
     public int UnitArea { get; set; }
     public int ExtraParkingCount { get; set; }
 
+
+    #region Navigation Properties
     public BuildingEntity Building { get; set; }
     [JsonIgnore]
     public ICollection<UnitOwner> UnitOwners { get; set; }
     [JsonIgnore]
     public ICollection<ResidentEntity> Residents { get; set; }
+
+
+    public ICollection<UnitExpense> UnitExpenses { get; set; }
+    #endregion
+
+
 
 }
