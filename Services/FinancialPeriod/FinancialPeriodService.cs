@@ -13,7 +13,7 @@ namespace BuldingManager.Services.FinancialPeriod
         public FinancialPeriodService(IFinancialPeriodRepository financialPeriodRepository,IMapper mapper)
         {
             _mapper = mapper;
-            financialPeriodRepository = _financialPeriodRepository;
+            _financialPeriodRepository = financialPeriodRepository;
         }
 
         public async Task<bool> CreateFinancialPeriod(FinancialPeriodCreateDto dto)
